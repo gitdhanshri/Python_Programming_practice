@@ -1,13 +1,28 @@
-def smallerCase(text,style):
+def calliingFun(text,style):
+	if(style=='s' or style=='S'):
+		print("small case");
+		smallerCase(text);
+	elif(style=='u' or style=='U'):
+		print("ultered case");
+		ulteredtext(text);
+	elif(style=='c' or style=='C'):
+		print("ulppercase");
+		capitaliZe(text);
+	elif(style=='r' or style=='R'):
+		print("Reeverse");
+		reverseText(text);	
+	print();	
+			
+def smallerCase(text):
 	len1=len(text);
 	for i in range(len1):
 		ch=text[i];
 		if(ch.isalpha()):#check character  is alphabet or not
 			if(ch.islower()): #if it is in lower then convert to upper
+				print(ch,end="  ");
+			else:
 				res_char=	converLower(ch);
 				print(res_char,end="  ");
-			else:
-				print(text[i],end="  ");
 		else:
 			print(text[i],end="  ");
 def converLower(letter):
@@ -19,7 +34,7 @@ def converLower(letter):
 		ascii_val-=32;
 		ch=chr(ascii_val);
 	return ch;
-def capitaliZe(text,style):
+def capitaliZe(text):
 	len1=len(text);
 	list1=list(text);
 	for i in range(len1):
@@ -30,7 +45,7 @@ def capitaliZe(text,style):
 			print(ch,end=" ");
 	print();
 	print();
-def reverseText(text,r):
+def reverseText(text):
 	#convert String into List so that we can iterate it
 	text=list(text);
 	start=0;
@@ -49,7 +64,7 @@ def reverseText(text,r):
 		res+=text[i];
 		i+=1;	
 	print(res);
-def ulteredtext(text,u):
+def ulteredtext(text):
 	len1=len(text);
 	for i in range(len1):
 		ch=text[i];
@@ -67,12 +82,17 @@ def ulteredtext(text,u):
 				print(text[i],end="  ");
 		else:
 			print(text[i],end="  ");
-text="Dggsclg";
-#capitaliZe(text,"c");
-#capitaliZe("Dhanshri2022@049","c");
-#smallerCase(text,"s");
-#converLower('D');
-#smallerCase(text,"s");
-#reverseText(text,"r");
-ulteredtext(text,"u");
+text="#if@it34thq2736~!_)())a";
+
+calliingFun(text,"c");
+calliingFun(text,"C");
+print();
+calliingFun(text,"s");
+calliingFun(text,"S");
+print();
+calliingFun(text,"u");
+calliingFun(text,"u");
+print();
+calliingFun(text,"r");
+calliingFun(text,"R");
 
