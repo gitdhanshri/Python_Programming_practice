@@ -1,0 +1,105 @@
+import java.util.*;
+class AnaGraamString{
+int countOfRepaetation(char c,String s){
+		        int start=0;
+		        int end=s.length()-1;
+		        int count=0;
+		      //  System.out.println("end value--->"+end);
+		        while(start<=end){
+			        if(s.charAt(start)==c && s.charAt(end)==c ){
+					if(start==end){
+						count++;
+					}else{
+				   	   count+=2; 
+				   	}
+			        }
+			        else if(s.charAt(start)==c){
+			                count++;				
+			        }
+			        else if(s.charAt(end)==c){
+			                count++;
+			        }
+			        start++;
+			        end--;
+		        }
+		        return count;
+}
+boolean  isStringAnagram(String s1,String s2){
+		if(s1.length()!=s2.length()){
+			return false;
+		}else{
+			int len1=s1.length();
+				int i=0;
+				while(i<len1){
+					if(countOfRepaetation(s1.charAt(i),s1)==countOfRepaetation(s1.charAt(i),s2)){
+						i++;
+					}
+					else{
+						return false;
+					}
+				}
+		}
+		return true;
+}
+	String miniizeTheString(String s){
+		String res="";
+		char[] ch_arr=s.toCharArray();
+		Arrays.sort(ch_arr);
+		//System.out.println(String.valueOf(ch_arr));
+		String ans=String.valueOf(ch_arr);
+		System.out.println("sorted----->"+ans);
+		if(ans.length()==1){
+			return ans;
+		}
+		int i=1;
+		char ch=ans.charAt(0);
+		while(i<ans.length()){
+				if(ch==ans.charAt(i)){
+					while( i<ans.length()  && ch==ans.charAt(i)){
+						i++;
+					}
+					res=res+ch;
+					if(i<ans.length()){
+						ch=ans.charAt(i);
+					}
+				}
+				else{
+					res=res+ans.charAt(i);
+					i++;
+				}
+		}
+		System.out.println("repeatedly Deleted String"+res);
+		return res;
+	}
+	public boolean isAnagram(String s1, String s2) {
+			String s=miniizeTheString(s1);
+			if (s1.length() != s2.length()) {
+					System.out.println("Fun1......");
+			  		  return false;
+			} else {
+						System.out.println("Entry of the Function......");
+				    int len1 = s.length();
+				    System.out.println("length of------>"+len1);
+				    int i = 0;
+				    while (i < len1) {
+				    	System.out.println(countOfRepaetation(s.charAt(i), s1));
+				    	System.out.println(countOfRepaetation(s.charAt(i), s2));
+					if (countOfRepaetation(s.charAt(i), s1) == countOfRepaetation(s.charAt(i), s2)) {
+					    i++;
+					    		System.out.println("Fun2......");
+					} else {
+						System.out.println("Fun3......");
+					    return false;
+					}
+				    }
+			}
+			System.out.println("Fun4......");
+        return true;
+    }
+	public static void main(String args[]){
+		AnaGraamString obj1=new AnaGraamString();
+		String s1="a";
+		String s2="b";
+		System.out.println(obj1.isAnagram(s1,s2));
+	}
+}
