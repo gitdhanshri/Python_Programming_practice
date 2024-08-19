@@ -1,0 +1,48 @@
+It looks like you are trying to define a class `Solution` with methods to handle string manipulations and return a sorted sentence based on the numbers in the string. The main issue you're encountering is a `NameError` due to the use of instance methods without proper referencing.
+
+In Python classes, when defining methods, you need to use `self` as the first parameter to refer to the instance of the class. To call other methods within the class, you need to use `self.<method_name>()` instead of just `<method_name>()`.
+
+Here's a corrected version of your `Solution` class with the methods properly defined and utilized:
+
+```python
+class Solution(object):
+    def Ascending_number_list(self, s):
+        nums = []
+        i = 0
+        while i < len(s):
+            num = 0
+            if s[i].isdigit():
+                while i < len(s) and s[i].isdigit():
+                    num = num * 10 + int(s[i])
+                    i += 1
+                nums.append(num)
+            else:
+                i += 1
+        nums.sort()
+        return nums
+
+    def returnString_withgiven_Index(self, index_val, s):
+        idx = 0
+        res = ""
+        if len(s) == 0:
+            return ""
+        while idx < len(s):
+            if s[idx].isdigit():
+                num = int(s[idx])
+                if num == index_val:
+                    start_idx = idx - 1
+                    while start_idx >= 0 and s[start_idx] != ' ':
+                        res = s[start_idx] + res
+                        start_idx -= 1
+                    return res
+            idx += 1
+        return ""
+
+    def sortSentence(self, s):
+        num_list = self.Ascending_number_list(s)
+        list_ans = ""
+        for i in range(len(num_list)):
+            stng = self.returnString_withgiven_Index(num_list[i], s)
+            list_ans += stng
+            list_ans += ' '
+        return list_ans.strip()  # Remove trailing space
