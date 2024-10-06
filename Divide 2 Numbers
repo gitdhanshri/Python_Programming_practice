@@ -1,0 +1,11 @@
+class Solution(object):
+    def divide(self, dividend, divisor):
+        # Get the quotient and remainder using divmod
+        if dividend == -2**31 and divisor == -1:
+            return 2**31 - 1  # Return max 32-bit integer value
+        
+        quotient, remainder = divmod(dividend, divisor)
+        if remainder != 0 and (dividend < 0) != (divisor < 0):
+            return quotient +1  # Adjust toward negative infinity
+        else:
+            return quotient
