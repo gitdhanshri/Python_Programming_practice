@@ -1,0 +1,45 @@
+def flatten_list(l):
+	flat_list = []
+	for item in l:
+		if isinstance(item, list) or isinstance(item, tuple):
+			flat_list.extend(flatten_list(item))
+		elif isinstance(item, dict):
+			k=list(item.keys())
+			v=list(item.values())
+			flat_list.extend(flatten_list(v))
+			flat_list.extend(flatten_list(k))			
+		elif isinstance(item, int):
+			flat_list.append(item)
+	return flat_list
+def findSecondLargest_Sec_Smallest(l):
+	min_val=-1
+	print(min_val)
+	smallest=min_val
+	sec_small=min_val
+	largest=min_val
+	sec_largest=min_val
+	arr=list(set(flatten_list(l)))
+	print("Sggs")
+	print(arr)
+	print(smallest,sec_small,sec_largest,largest)
+	smallest = float('inf')
+	largest = float('-inf')
+    
+	for num in arr:
+		if num < smallest:
+			smallest = num
+		if num > largest:
+			largest = num
+    # Initialize second pass for second smallest and second largest
+	sec_small = float('inf')
+	sec_largest = float('-inf')
+	for num in arr:
+		if smallest < num < sec_small:
+			sec_small = num
+		if largest > num > sec_largest:
+			sec_largest = num
+	return [sec_small,sec_largest]
+# Test cases
+l = [(23, 11, -4, [5, (7, 7, -7, -2), 5, -5], (44,45,46,47,[91,92,93,94],48),3), [23, 222, (11, 11, 11), 231], 232,{"a":1,"b":2,"c":3,"d":4,"e":5}]
+l2=[4,4,4,2,2,-2,-67]
+print(findSecondLargest_Sec_Smallest(l))
