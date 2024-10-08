@@ -1,0 +1,36 @@
+import random
+def printList(l):
+	#print(l)
+	for i in range(len(l)):
+		print(l[i],end=" ")
+def getRow(colm):
+	grd=[]
+	for i in range(colm):
+		x=random.randint(1,9)
+		s="_"
+		grd+=[f"|_{s}_|"]
+	return grd
+def creteEmtyListContainingDictionary(rows,colm):
+	l=[]
+	for i in range(rows):
+		l.append(getRow(colm))
+	top_line=".___. "*colm
+	print(top_line)
+	for i in range(rows):	
+		printList(l[i])
+		print("")
+	print("--------------------------------------")
+def getInputFromUser():
+	print("Enetr name player 1")
+	player1=eval(input())
+	print("Enetr name player 2")
+	player2=eval(input())
+	
+	
+def display():
+	print("Enter rows-:>")
+	rows=eval(input())
+	print("Enter colm-:>")
+	colm=eval(input())
+	creteEmtyListContainingDictionary(rows,colm)
+display()
