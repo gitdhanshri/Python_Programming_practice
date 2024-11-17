@@ -1,0 +1,41 @@
+import timeit
+def fibo1(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+
+    a, b = 0, 1  # Initialize F(0) and F(1)
+    for _ in range(2, n + 1):
+        a, b = b, a + b  # Update F(n-1) and F(n)
+    
+    return b
+def fibo2(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+
+    storage = [0, 1]  # Initialize storage for F(0) and F(1)
+    for i in range(2, n + 1):
+        storage.append(storage[i - 1] + storage[i - 2])
+    
+    return storage[n]
+
+def fibo3(n):
+    storage = [0, 1]
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        while len(storage) <= n:  # Ensure storage can accommodate up to index n
+            storage.append(0)
+        if storage[n] == 0:  # Use storage[n] to check if the value is calculated
+            storage[n] = fibo1(n - 1) + fibo1(n - 2)
+        return storage[n]
+print("Time 1--:",timeit.timeit('fibo1(8)', 'from __main__ import fibo1'))
+print("Time 2--:",timeit.timeit('fibo2(8)', 'from __main__ import fibo2'))
+print("Time 3--:",timeit.timeit('fibo3(8)', 'from __main__ import fibo3'))
+
+
